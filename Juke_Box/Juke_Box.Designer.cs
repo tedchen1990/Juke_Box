@@ -64,12 +64,14 @@
             // txt_Title
             // 
             this.txt_Title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.txt_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Title.Location = new System.Drawing.Point(296, 195);
             this.txt_Title.Multiline = true;
             this.txt_Title.Name = "txt_Title";
             this.txt_Title.ReadOnly = true;
             this.txt_Title.Size = new System.Drawing.Size(292, 35);
             this.txt_Title.TabIndex = 2;
+            this.txt_Title.Text = "Text";
             // 
             // lst_Templet
             // 
@@ -117,6 +119,7 @@
             this.setUpToolStripMenuItem.Name = "setUpToolStripMenuItem";
             this.setUpToolStripMenuItem.Size = new System.Drawing.Size(63, 27);
             this.setUpToolStripMenuItem.Text = "&Set up";
+            this.setUpToolStripMenuItem.Click += new System.EventHandler(this.setUpToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Juke_Box;
 
 namespace Juke_Box
 {
@@ -17,5 +18,15 @@ namespace Juke_Box
             InitializeComponent();
         }
 
+        #region Variables
+        #endregion
+
+        #region Menus
+        private void setUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Set_up set_up = new Set_up();
+            set_up.ShowDialog();
+        }
+        #endregion
     }
 }

@@ -16,5 +16,10 @@ namespace Juke_Box
         {
             InitializeComponent();
         }
+
+        private void btn_OK_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
