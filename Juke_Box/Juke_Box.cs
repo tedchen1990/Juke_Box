@@ -19,9 +19,10 @@ namespace Juke_Box
             InitializeComponent();
         }
 
-        #region Variables
-        // Creat a 2D array to store the information about Title and Tracks 
-        string[,] title_track;
+        #region Global variable
+        // Global variable
+        public ListBox[] lst_genre;
+        public string[] genre_titles;
         #endregion
 
         #region Initial stage
@@ -29,61 +30,104 @@ namespace Juke_Box
         /// <summary>
         /// Running the event first when the program starts
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Juke_Box_Load(object sender, EventArgs e)
         {
-
+            // storing into listbox, textbox
+            if (storing_infromation())
+            {
+                display(hsc_Select_Title.Value);
+            }
+            else
+            {
+                MessageBox.Show("worry");
+            }
         }
 
-        // Method: Get the information into 2D array from Media and Tracks folder
-        private void store_infromation()
+        //method of storing infos
+        private bool storing_infromation()
         {
+            //
+            bool store_Yes_No = false;
+            //
+            int genre_maximum;
             // The media floder of information is already made in this path
             string InfoPath = Directory.GetCurrentDirectory() + "\\Media\\";
             // Open the file 
             StreamReader media = File.OpenText(InfoPath + "Media.txt");
-            //
-            title_track = new string[,] { };
-            //lineOfText = media.ReadLine();
-           // while (lineOfText != null)
-            //{
-                //string[,] title_track[] = { {lineOfText} };
-            //}
+            // Read first line from file
+            string lineOfText = media.ReadLine();
+            //Make sure the fisrt line is not null and is number which means how mang genre
+            if (lineOfText != null && int.TryParse(lineOfText, out genre_maximum))
+            {   
+                //
+                store_Yes_No = true;
+                //
+                genre_titles = new string[genre_maximum];
+                //
+                lst_genre = new ListBox[genre_maximum];
+                // Set the num of genre to the hscrollbar
+                hsc_Select_Title.Maximum = genre_maximum-1;
+
+                // second line of text
+                lineOfText = media.ReadLine();
+                //
+                int num;
+                for (int i = 0; i < genre_maximum ; i++)
+                {
+                    lst_genre[i] = new ListBox();
+                    do
+                    {
+                        if (int.TryParse(lineOfText, out num))
+                        {
+                            lineOfText = media.ReadLine();
+                            genre_titles[i] = lineOfText;
+                        }
+                        else 
+                        {
+                            lst_genre[i].Items.Add(lineOfText);
+                        }
+
+                        lineOfText = media.ReadLine();
+                    }
+                    while (lineOfText != null && int.TryParse(lineOfText, out num) != true);
+                }
+            }
             media.Close();
+            return store_Yes_No;
+        }
+
+        private void display(int Int_Number_of_Genre)
+        {
+            lst_Blank_Templet.Items.Clear();
+            txt_Title.Text = genre_titles[Int_Number_of_Genre];
+            for (int i = 0; i < lst_genre[Int_Number_of_Genre].Items.Count; i++)
+            {
+                lst_Blank_Templet.Items.Add(lst_genre[Int_Number_of_Genre].Items[i]);
+            }
+        }
+
+        #endregion
+
+        #region Hscrollbar_Event
+        private void hsc_Select_Title_ValueChanged(object sender, EventArgs e)
+        {
+            display(hsc_Select_Title.Value);
         }
         #endregion
 
-        #region Menus
-
-        /// <summary>
-        /// Clicking event of Set up to show the window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        #region Menu
         private void setUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // The methos of showing the window 
-            Set_up set_up = new Set_up();
-            set_up.ShowDialog();
+            Set_up set_Up = new Set_up();
+            set_Up.ShowDialog();
         }
-
-        /// <summary>
-        /// Clicking event of About to show the window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param> 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         #endregion
 
+        //test code :
         private void button1_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(lineOfText);
+           MessageBox.Show(lst_genre[2].Items[1].ToString());
         }
     }
+
 }

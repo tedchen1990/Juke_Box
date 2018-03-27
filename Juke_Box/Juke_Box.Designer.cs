@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lst_Playlist = new System.Windows.Forms.ListBox();
             this.txt_Title = new System.Windows.Forms.TextBox();
-            this.lst_Templet = new System.Windows.Forms.ListBox();
+            this.lst_Blank_Templet = new System.Windows.Forms.ListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.hsc_Select_Title = new System.Windows.Forms.HScrollBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -74,14 +74,14 @@
             this.txt_Title.TabIndex = 2;
             this.txt_Title.Text = "Text";
             // 
-            // lst_Templet
+            // lst_Blank_Templet
             // 
-            this.lst_Templet.FormattingEnabled = true;
-            this.lst_Templet.ItemHeight = 16;
-            this.lst_Templet.Location = new System.Drawing.Point(296, 229);
-            this.lst_Templet.Name = "lst_Templet";
-            this.lst_Templet.Size = new System.Drawing.Size(292, 116);
-            this.lst_Templet.TabIndex = 3;
+            this.lst_Blank_Templet.FormattingEnabled = true;
+            this.lst_Blank_Templet.ItemHeight = 16;
+            this.lst_Blank_Templet.Location = new System.Drawing.Point(296, 229);
+            this.lst_Blank_Templet.Name = "lst_Blank_Templet";
+            this.lst_Blank_Templet.Size = new System.Drawing.Size(292, 116);
+            this.lst_Blank_Templet.TabIndex = 3;
             // 
             // textBox1
             // 
@@ -95,10 +95,13 @@
             // 
             // hsc_Select_Title
             // 
+            this.hsc_Select_Title.LargeChange = 1;
             this.hsc_Select_Title.Location = new System.Drawing.Point(296, 345);
+            this.hsc_Select_Title.Maximum = 2;
             this.hsc_Select_Title.Name = "hsc_Select_Title";
             this.hsc_Select_Title.Size = new System.Drawing.Size(292, 24);
             this.hsc_Select_Title.TabIndex = 5;
+            this.hsc_Select_Title.ValueChanged += new System.EventHandler(this.hsc_Select_Title_ValueChanged);
             // 
             // menuStrip
             // 
@@ -127,7 +130,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(69, 27);
             this.aboutToolStripMenuItem.Text = "A&bout";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -149,7 +151,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.hsc_Select_Title);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lst_Templet);
+            this.Controls.Add(this.lst_Blank_Templet);
             this.Controls.Add(this.txt_Title);
             this.Controls.Add(this.lst_Playlist);
             this.Controls.Add(this.label1);
@@ -174,7 +176,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lst_Playlist;
         private System.Windows.Forms.TextBox txt_Title;
-        private System.Windows.Forms.ListBox lst_Templet;
+        private System.Windows.Forms.ListBox lst_Blank_Templet;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.HScrollBar hsc_Select_Title;
         private System.Windows.Forms.MenuStrip menuStrip;
