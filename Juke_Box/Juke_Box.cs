@@ -23,11 +23,12 @@ namespace Juke_Box
         // Global variable in Juke_Box
         public ListBox[] lst_media;
         public string[] genre_titles;
-        public bool load_media;
- 
+        public bool load_media = false;
+        public bool isplaying = false;
         #endregion
 
         #region Initial stage
+
         /// <summary>
         /// Running the event first when the program starts
         /// </summary>
@@ -103,6 +104,7 @@ namespace Juke_Box
         #endregion
 
         #region Hscrollbar
+
         /// <summary>
         /// Slither the hscrollbar
         /// </summary>
@@ -116,16 +118,52 @@ namespace Juke_Box
         private void hscorllbar_display(int Number_of_Genre)
         {
             lst_Blank_Templet.Items.Clear();
+
             txt_Title.Text = genre_titles[Number_of_Genre];
-            for (int i = 0; i < lst_media[Number_of_Genre].Items.Count; i++)
+
+            int max_index = lst_media[Number_of_Genre].Items.Count;
+            int items_index = 0;
+            while (items_index < max_index)
             {
-                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[i]);
+                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[items_index]);
+                items_index += 1;
+            }
+        }
+
+        #endregion
+
+        #region Double-clicking a track
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void lst_Blank_Templet_DoubleClick(object sender, EventArgs e)
+        {
+            Coyp_track();
+        }
+
+        //
+        private void Coyp_track()
+        {
+            int Track_index = lst_Blank_Templet.SelectedIndex;
+
+            if (Track_index >= 0)
+            {
+                if (txt_Presently_Playing.Text.Length == 0)
+                {
+                    txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
+                }
+                else
+                {
+                    lst_Playlist.Items.Add(lst_Blank_Templet.Items[Track_index]);
+                }
             }
         }
 
         #endregion
 
         #region Menu
+
         /// <summary>
         /// 
         /// </summary>
@@ -134,11 +172,21 @@ namespace Juke_Box
             Set_up set_Up = new Set_up();
             // Send vaules to set_up       
             set_Up.load_media = load_media;
-            set_Up.lst_genre = lst_media; // 
+            set_Up.lst_media = lst_media; // 
             set_Up.genre_titles = genre_titles; // 
             set_Up.genre_max = hsc_Select_Title.Maximum;
             set_Up.ShowDialog();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //
         #endregion
 
     }

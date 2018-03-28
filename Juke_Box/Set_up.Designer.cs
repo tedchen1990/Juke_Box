@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_Clear_Tracks = new System.Windows.Forms.Button();
             this.btn_Import_Tracks = new System.Windows.Forms.Button();
-            this.lst_Read_Directory = new System.Windows.Forms.ListBox();
+            this.lst_Read_File = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_Next_Title = new System.Windows.Forms.Button();
             this.btn_Delete_Title = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@
             // 
             this.groupBox1.Controls.Add(this.btn_Clear_Tracks);
             this.groupBox1.Controls.Add(this.btn_Import_Tracks);
-            this.groupBox1.Controls.Add(this.lst_Read_Directory);
+            this.groupBox1.Controls.Add(this.lst_Read_File);
             this.groupBox1.Location = new System.Drawing.Point(12, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(364, 520);
@@ -81,14 +81,14 @@
             this.btn_Import_Tracks.UseVisualStyleBackColor = true;
             this.btn_Import_Tracks.Click += new System.EventHandler(this.btn_Import_Tracks_Click);
             // 
-            // lst_Read_Directory
+            // lst_Read_File
             // 
-            this.lst_Read_Directory.FormattingEnabled = true;
-            this.lst_Read_Directory.ItemHeight = 16;
-            this.lst_Read_Directory.Location = new System.Drawing.Point(6, 21);
-            this.lst_Read_Directory.Name = "lst_Read_Directory";
-            this.lst_Read_Directory.Size = new System.Drawing.Size(352, 372);
-            this.lst_Read_Directory.TabIndex = 4;
+            this.lst_Read_File.FormattingEnabled = true;
+            this.lst_Read_File.ItemHeight = 16;
+            this.lst_Read_File.Location = new System.Drawing.Point(6, 21);
+            this.lst_Read_File.Name = "lst_Read_File";
+            this.lst_Read_File.Size = new System.Drawing.Size(352, 372);
+            this.lst_Read_File.TabIndex = 4;
             // 
             // groupBox2
             // 
@@ -211,6 +211,7 @@
             this.btn_Cancle.TabIndex = 11;
             this.btn_Cancle.Text = "Cancle";
             this.btn_Cancle.UseVisualStyleBackColor = true;
+            this.btn_Cancle.Click += new System.EventHandler(this.btn_Cancle_Click);
             // 
             // btn_OK
             // 
@@ -263,7 +264,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox lst_Read_Directory;
+        private System.Windows.Forms.ListBox lst_Read_File;
         private System.Windows.Forms.Button btn_Clear_Tracks;
         private System.Windows.Forms.Button btn_Import_Tracks;
         private System.Windows.Forms.Button btn_Coyp_Track;

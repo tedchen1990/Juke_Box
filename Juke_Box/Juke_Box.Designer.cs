@@ -33,12 +33,11 @@
             this.lst_Playlist = new System.Windows.Forms.ListBox();
             this.txt_Title = new System.Windows.Forms.TextBox();
             this.lst_Blank_Templet = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_Presently_Playing = new System.Windows.Forms.TextBox();
             this.hsc_Select_Title = new System.Windows.Forms.HScrollBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.setUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,16 +81,18 @@
             this.lst_Blank_Templet.Name = "lst_Blank_Templet";
             this.lst_Blank_Templet.Size = new System.Drawing.Size(292, 116);
             this.lst_Blank_Templet.TabIndex = 3;
+            this.lst_Blank_Templet.DoubleClick += new System.EventHandler(this.lst_Blank_Templet_DoubleClick);
             // 
-            // textBox1
+            // txt_Presently_Playing
             // 
-            this.textBox1.BackColor = System.Drawing.Color.Lime;
-            this.textBox1.Location = new System.Drawing.Point(269, 396);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(348, 29);
-            this.textBox1.TabIndex = 4;
+            this.txt_Presently_Playing.BackColor = System.Drawing.Color.Lime;
+            this.txt_Presently_Playing.Location = new System.Drawing.Point(269, 396);
+            this.txt_Presently_Playing.Multiline = true;
+            this.txt_Presently_Playing.Name = "txt_Presently_Playing";
+            this.txt_Presently_Playing.ReadOnly = true;
+            this.txt_Presently_Playing.Size = new System.Drawing.Size(348, 29);
+            this.txt_Presently_Playing.TabIndex = 4;
+            this.txt_Presently_Playing.Tag = "";
             // 
             // hsc_Select_Title
             // 
@@ -130,15 +131,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(69, 27);
             this.aboutToolStripMenuItem.Text = "A&bout";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(13, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // Juke_Box
             // 
@@ -147,9 +140,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(904, 827);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.hsc_Select_Title);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_Presently_Playing);
             this.Controls.Add(this.lst_Blank_Templet);
             this.Controls.Add(this.txt_Title);
             this.Controls.Add(this.lst_Playlist);
@@ -176,11 +168,10 @@
         private System.Windows.Forms.ListBox lst_Playlist;
         private System.Windows.Forms.TextBox txt_Title;
         private System.Windows.Forms.ListBox lst_Blank_Templet;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_Presently_Playing;
         private System.Windows.Forms.HScrollBar hsc_Select_Title;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem setUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
     }
 }
