@@ -72,7 +72,7 @@
             this.txt_Title.ReadOnly = true;
             this.txt_Title.Size = new System.Drawing.Size(292, 35);
             this.txt_Title.TabIndex = 2;
-            this.txt_Title.Text = "Text";
+            this.txt_Title.Text = "No contents !";
             // 
             // lst_Blank_Templet
             // 
@@ -97,7 +97,7 @@
             // 
             this.hsc_Select_Title.LargeChange = 1;
             this.hsc_Select_Title.Location = new System.Drawing.Point(296, 345);
-            this.hsc_Select_Title.Maximum = 2;
+            this.hsc_Select_Title.Maximum = 0;
             this.hsc_Select_Title.Name = "hsc_Select_Title";
             this.hsc_Select_Title.Size = new System.Drawing.Size(292, 24);
             this.hsc_Select_Title.TabIndex = 5;
@@ -139,7 +139,6 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Juke_Box
             // 

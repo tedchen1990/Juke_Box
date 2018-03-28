@@ -37,7 +37,7 @@
             this.btn_Delete_Title = new System.Windows.Forms.Button();
             this.btn_Add_Title = new System.Windows.Forms.Button();
             this.btn_Previous_Title = new System.Windows.Forms.Button();
-            this.lst_Templet = new System.Windows.Forms.ListBox();
+            this.lst_Blank_Templet = new System.Windows.Forms.ListBox();
             this.txt_Title = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Coyp_Track = new System.Windows.Forms.Button();
@@ -79,6 +79,7 @@
             this.btn_Import_Tracks.TabIndex = 5;
             this.btn_Import_Tracks.Text = "Import Tracks From Directory";
             this.btn_Import_Tracks.UseVisualStyleBackColor = true;
+            this.btn_Import_Tracks.Click += new System.EventHandler(this.btn_Import_Tracks_Click);
             // 
             // lst_Read_Directory
             // 
@@ -95,7 +96,7 @@
             this.groupBox2.Controls.Add(this.btn_Delete_Title);
             this.groupBox2.Controls.Add(this.btn_Add_Title);
             this.groupBox2.Controls.Add(this.btn_Previous_Title);
-            this.groupBox2.Controls.Add(this.lst_Templet);
+            this.groupBox2.Controls.Add(this.lst_Blank_Templet);
             this.groupBox2.Controls.Add(this.txt_Title);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(598, 26);
@@ -113,6 +114,7 @@
             this.btn_Next_Title.TabIndex = 14;
             this.btn_Next_Title.Text = "Next >>";
             this.btn_Next_Title.UseVisualStyleBackColor = true;
+            this.btn_Next_Title.Click += new System.EventHandler(this.btn_Next_Title_Click);
             // 
             // btn_Delete_Title
             // 
@@ -134,21 +136,23 @@
             // 
             // btn_Previous_Title
             // 
+            this.btn_Previous_Title.Enabled = false;
             this.btn_Previous_Title.Location = new System.Drawing.Point(11, 423);
             this.btn_Previous_Title.Name = "btn_Previous_Title";
             this.btn_Previous_Title.Size = new System.Drawing.Size(96, 68);
             this.btn_Previous_Title.TabIndex = 10;
             this.btn_Previous_Title.Text = "<< Previous";
             this.btn_Previous_Title.UseVisualStyleBackColor = true;
+            this.btn_Previous_Title.Click += new System.EventHandler(this.btn_Previous_Title_Click);
             // 
-            // lst_Templet
+            // lst_Blank_Templet
             // 
-            this.lst_Templet.FormattingEnabled = true;
-            this.lst_Templet.ItemHeight = 16;
-            this.lst_Templet.Location = new System.Drawing.Point(36, 79);
-            this.lst_Templet.Name = "lst_Templet";
-            this.lst_Templet.Size = new System.Drawing.Size(249, 308);
-            this.lst_Templet.TabIndex = 4;
+            this.lst_Blank_Templet.FormattingEnabled = true;
+            this.lst_Blank_Templet.ItemHeight = 16;
+            this.lst_Blank_Templet.Location = new System.Drawing.Point(36, 79);
+            this.lst_Blank_Templet.Name = "lst_Blank_Templet";
+            this.lst_Blank_Templet.Size = new System.Drawing.Size(249, 308);
+            this.lst_Blank_Templet.TabIndex = 4;
             // 
             // txt_Title
             // 
@@ -161,7 +165,7 @@
             this.txt_Title.ReadOnly = true;
             this.txt_Title.Size = new System.Drawing.Size(249, 32);
             this.txt_Title.TabIndex = 3;
-            this.txt_Title.Text = "Text";
+            this.txt_Title.Text = "No contents !";
             // 
             // label1
             // 
@@ -226,7 +230,6 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Set_up
             // 
@@ -248,6 +251,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Setup";
+            this.Load += new System.EventHandler(this.Set_up_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -267,7 +271,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_Title;
-        private System.Windows.Forms.ListBox lst_Templet;
+        private System.Windows.Forms.ListBox lst_Blank_Templet;
         private System.Windows.Forms.Button btn_Next_Title;
         private System.Windows.Forms.Button btn_Delete_Title;
         private System.Windows.Forms.Button btn_Add_Title;
