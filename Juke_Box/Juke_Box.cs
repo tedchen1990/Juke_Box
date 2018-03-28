@@ -21,13 +21,10 @@ namespace Juke_Box
 
         #region Global variable
         // Global variable in Juke_Box
-        public ListBox[] lst_genre;
+        public ListBox[] lst_media;
         public string[] genre_titles;
-
         public bool load_media;
-        /* preinstall num of creating genres when loading Media at each time
-        and not allow more than 10 genre can be create at once time in Set_up*/
-        public int create_genre_limit = 10; 
+ 
         #endregion
 
         #region Initial stage
@@ -36,37 +33,26 @@ namespace Juke_Box
         /// </summary>
         private void Juke_Box_Load(object sender, EventArgs e)
         {
+            load_display();
+        }
+
+        private void load_display()
+        {
             if (Load_Media() == true) // If Load_Media() is sucessful 
             {
                 // hsc_Select_Title.value as Number_of_Genre
-                display(hsc_Select_Title.Value);
+                hscorllbar_display(hsc_Select_Title.Value);
             }
-            else
-            {
-                hsc_Select_Title.Maximum = 0;
-                MessageBox.Show("Unable to load the Content !");
-            }
-        }
-
-        //method of display 
-        private void display(int Number_of_Genre)
-        {
-                lst_Blank_Templet.Items.Clear();
-                txt_Title.Text = genre_titles[Number_of_Genre];
-                for (int i = 0; i < lst_genre[Number_of_Genre].Items.Count; i++)
-                {
-                    lst_Blank_Templet.Items.Add(lst_genre[Number_of_Genre].Items[i]);
-                }              
+            else{ MessageBox.Show("Unable to load the Content !");}
         }
 
         //method of storing infos from media
         private bool Load_Media()
         {
-            load_media = false;
             // The media floder of information is already made in this path
             string InfoPath = Directory.GetCurrentDirectory() + "\\Media\\";
-            // Open the file 
             StreamReader media = File.OpenText(InfoPath + "Media.txt");
+
             // Read first line from file
             string lineOfText = media.ReadLine();
             int count_load_genre;
@@ -74,36 +60,34 @@ namespace Juke_Box
             if (lineOfText != null && int.TryParse(lineOfText, out count_load_genre))
             {
                 load_media = true;
-                //
-                lst_genre = new ListBox[count_load_genre + create_genre_limit];
-                genre_titles = new string[count_load_genre + create_genre_limit];
+
+                /* Set up the 20 left space for creating new genre when it is Loading Media for each time */
+                lst_media = new ListBox[count_load_genre + 20];
+                genre_titles = new string[count_load_genre + 20];
                 hsc_Select_Title.Maximum = count_load_genre - 1;
 
-                // second line of text
+                // Read second line of text
                 lineOfText = media.ReadLine();
-                //
-                int num;
+                int judgement;
+                int genre_index = 0;
                 try
                 {
-                    for (int i = 0; i < count_load_genre; i++)
+                    while (genre_index < count_load_genre)
                     {
-                        lst_genre[i] = new ListBox();
-                        do
+                        lst_media[genre_index] = new ListBox();
+                        if (lineOfText != null && int.TryParse(lineOfText, out judgement)==true)
                         {
-                            if (int.TryParse(lineOfText, out num))
-                            {
-                                lineOfText = media.ReadLine();
-                                genre_titles[i] = lineOfText;
-                            }
-                            else
-                            {
-                                lst_genre[i].Items.Add(lineOfText);
-                            }
-
+                            lineOfText = media.ReadLine();
+                            genre_titles[genre_index] = lineOfText;
                             lineOfText = media.ReadLine();
                         }
-                        while (lineOfText != null && int.TryParse(lineOfText, out num) != true);
-                    }
+                        while (lineOfText != null && int.TryParse(lineOfText, out judgement) == false)
+                        {
+                            lst_media[genre_index].Items.Add(lineOfText);
+                            lineOfText = media.ReadLine();
+                        }
+                        genre_index += 1;
+                    }                   
                 }
                 catch (Exception)
                 {
@@ -125,7 +109,18 @@ namespace Juke_Box
         private void hsc_Select_Title_ValueChanged(object sender, EventArgs e)
         {
             // Run the method of display
-            display(hsc_Select_Title.Value);
+            hscorllbar_display(hsc_Select_Title.Value);
+        }
+
+        //
+        private void hscorllbar_display(int Number_of_Genre)
+        {
+            lst_Blank_Templet.Items.Clear();
+            txt_Title.Text = genre_titles[Number_of_Genre];
+            for (int i = 0; i < lst_media[Number_of_Genre].Items.Count; i++)
+            {
+                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[i]);
+            }
         }
 
         #endregion
@@ -137,12 +132,11 @@ namespace Juke_Box
         private void setUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Set_up set_Up = new Set_up();
-            // Send vaules to set_up
+            // Send vaules to set_up       
             set_Up.load_media = load_media;
-            set_Up.lst_genre = lst_genre; // 
+            set_Up.lst_genre = lst_media; // 
             set_Up.genre_titles = genre_titles; // 
-            set_Up.genre_maximum = hsc_Select_Title.Maximum;
-            set_Up.create_genre_limit = create_genre_limit;
+            set_Up.genre_max = hsc_Select_Title.Maximum;
             set_Up.ShowDialog();
         }
         #endregion

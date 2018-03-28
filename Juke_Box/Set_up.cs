@@ -18,16 +18,14 @@ namespace Juke_Box
         }
 
         #region Global variable
-        // Get the vaule from Juke_Box
+        // Get this vaule from Juke_Box
         public ListBox[] lst_genre; 
         public string[] genre_titles;
-        public int genre_maximum;
+        public int genre_max;
         public bool load_media;
+
         //for << Previous and Next >>
         public int Number_of_Genre;
-        /* preinstall num of creating genres when loading Media at each time
-        and not allow more than 10 genre can be create at once time in Set_up*/
-        public int create_genre_limit;
         #endregion
 
         #region Initial stage
@@ -36,28 +34,18 @@ namespace Juke_Box
         /// </summary>
         private void Set_up_Load(object sender, EventArgs e)
         {
+            load_display();
+        }
+
+        private void load_display()
+        {
             Number_of_Genre = 0;
             if (load_media == true)
             {
-                display(Number_of_Genre);
+                Select_Num_display(Number_of_Genre);
             }
-            if (genre_maximum == 0)
-            {
-                btn_Next_Title.Enabled = false;
-            }               
+            else { btn_Next_Title.Enabled = false; }
         }
-
-        //
-        private void display(int Number_of_Genre)
-        {
-            lst_Blank_Templet.Items.Clear();
-            txt_Title.Text = genre_titles[Number_of_Genre];
-            for (int i = 0; i < lst_genre[Number_of_Genre].Items.Count; i++)
-            {
-                lst_Blank_Templet.Items.Add(lst_genre[Number_of_Genre].Items[i]);
-            }
-        }
-
         #endregion
 
         #region Import track from directory 
@@ -71,14 +59,14 @@ namespace Juke_Box
 
         #endregion
 
-        #region << Previous 
+        #region << Previous - Next title >>
         /// <summary>
         /// 
         /// </summary>
         private void btn_Previous_Title_Click(object sender, EventArgs e)
         {
             Number_of_Genre -= 1;
-            display(Number_of_Genre);
+            Select_Num_display(Number_of_Genre);
             if (Number_of_Genre == 0)
             {
                 btn_Previous_Title.Enabled = false;
@@ -86,23 +74,30 @@ namespace Juke_Box
             btn_Next_Title.Enabled = true;
         }
 
-        #endregion
-
-        #region << Next title 
         /// <summary>
         /// 
         /// </summary>
         private void btn_Next_Title_Click(object sender, EventArgs e)
         {
             Number_of_Genre += 1;
-            display(Number_of_Genre);
-            if (Number_of_Genre == (genre_maximum))
+            Select_Num_display(Number_of_Genre);
+            if (Number_of_Genre == (genre_max))
             {
                 btn_Next_Title.Enabled = false;
             }
             btn_Previous_Title.Enabled = true;
         }
 
+        //
+        private void Select_Num_display(int Number_of_Genre)
+        {
+            lst_Blank_Templet.Items.Clear();
+            txt_Title.Text = genre_titles[Number_of_Genre];
+            for (int i = 0; i < lst_genre[Number_of_Genre].Items.Count; i++)
+            {
+                lst_Blank_Templet.Items.Add(lst_genre[Number_of_Genre].Items[i]);
+            }
+        }
         #endregion
 
         #region OK button
