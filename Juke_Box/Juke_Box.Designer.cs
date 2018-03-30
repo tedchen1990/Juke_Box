@@ -37,8 +37,8 @@
             this.txt_Presently_Playing = new System.Windows.Forms.TextBox();
             this.hsc_Select_Title = new System.Windows.Forms.HScrollBar();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.setUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setUp_Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.about_Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.timer_player = new System.Windows.Forms.Timer(this.components);
             this.Juke_box_MediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.menuStrip.SuspendLayout();
@@ -62,6 +62,7 @@
             this.lst_Playlist.ItemHeight = 16;
             this.lst_Playlist.Location = new System.Drawing.Point(331, 452);
             this.lst_Playlist.Name = "lst_Playlist";
+            this.lst_Playlist.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lst_Playlist.Size = new System.Drawing.Size(227, 180);
             this.lst_Playlist.TabIndex = 1;
             // 
@@ -114,32 +115,31 @@
             this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setUpToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.setUp_Menu,
+            this.about_Menu});
             this.menuStrip.Location = new System.Drawing.Point(0, 796);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(904, 31);
             this.menuStrip.TabIndex = 6;
             this.menuStrip.Text = "menuStrip1";
             // 
-            // setUpToolStripMenuItem
+            // setUp_Menu
             // 
-            this.setUpToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.setUpToolStripMenuItem.Name = "setUpToolStripMenuItem";
-            this.setUpToolStripMenuItem.Size = new System.Drawing.Size(63, 27);
-            this.setUpToolStripMenuItem.Text = "&Set up";
-            this.setUpToolStripMenuItem.Click += new System.EventHandler(this.setUpToolStripMenuItem_Click);
+            this.setUp_Menu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.setUp_Menu.Name = "setUp_Menu";
+            this.setUp_Menu.Size = new System.Drawing.Size(63, 27);
+            this.setUp_Menu.Text = "&Set up";
+            this.setUp_Menu.Click += new System.EventHandler(this.setUp_Menu_Click);
             // 
-            // aboutToolStripMenuItem
+            // about_Menu
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(69, 27);
-            this.aboutToolStripMenuItem.Text = "A&bout";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.about_Menu.Name = "about_Menu";
+            this.about_Menu.Size = new System.Drawing.Size(69, 27);
+            this.about_Menu.Text = "A&bout";
+            this.about_Menu.Click += new System.EventHandler(this.about_Menu_Click);
             // 
             // timer_player
             // 
-            this.timer_player.Enabled = true;
             this.timer_player.Interval = 3000;
             this.timer_player.Tick += new System.EventHandler(this.timer_player_Tick);
             // 
@@ -195,8 +195,8 @@
         private System.Windows.Forms.TextBox txt_Presently_Playing;
         private System.Windows.Forms.HScrollBar hsc_Select_Title;
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem setUpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setUp_Menu;
+        private System.Windows.Forms.ToolStripMenuItem about_Menu;
         private System.Windows.Forms.Timer timer_player;
         private AxWMPLib.AxWindowsMediaPlayer Juke_box_MediaPlayer;
     }

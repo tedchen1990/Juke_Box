@@ -26,6 +26,7 @@ namespace Juke_Box
         public string[] genre_titles;
         public string Files_Path;
         public bool load_media = false;
+        public bool playing_song = false;
         #endregion
 
         #region Initial stage
@@ -149,14 +150,19 @@ namespace Juke_Box
             int Track_index = lst_Blank_Templet.SelectedIndex;
             if (Track_index >= 0)
             {
-                if (txt_Presently_Playing.Text.Length == 0)
+                // song is playing
+                if (playing_song == true)
+                {
+                    // add to playlist
+                    lst_Playlist.Items.Add(lst_Blank_Templet.Items[Track_index]);
+                }
+                // no song in the playlist any more and song is not playing
+                else if (lst_Playlist.Items.Count==0)
                 {
                     txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
+                    // start the first song if no music in the playlist
                     play_music();
-                }
-                else
-                {
-                    lst_Playlist.Items.Add(lst_Blank_Templet.Items[Track_index]);
+                    playing_song = true;
                 }    
             }
         }
@@ -164,7 +170,6 @@ namespace Juke_Box
         //
         private void play_music()
         {
-            timer_player.Enabled = false;
             Juke_box_MediaPlayer.URL = Files_Path + "\\Tracks\\" + txt_Presently_Playing.Text;
             Juke_box_MediaPlayer.Ctlcontrols.play();  
         }
@@ -177,10 +182,18 @@ namespace Juke_Box
         /// </summary>
         private void timer_player_Tick(object sender, EventArgs e)
         {
-            // No sang playing
+            // No sang playing then going to play next song 
             if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsStopped)
             {
+                // stop the timer with playing next song
+                timer_player.Enabled = false;
+                // play the next song
                 play_next();
+            } 
+            // song is playing and mark it is playing
+            if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsPlaying)
+            {
+                playing_song = true;
             }
         }
 
@@ -191,12 +204,14 @@ namespace Juke_Box
         {
             if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsStopped)
             {
+                // No song playing
+                playing_song = false;
                 timer_player.Enabled = true;
             }
         }
 
         private void play_next()
-        {
+        {  
             if (lst_Playlist.Items.Count > 0)
             {
                 txt_Presently_Playing.Text = lst_Playlist.Items[0].ToString();
@@ -205,11 +220,10 @@ namespace Juke_Box
             }
             else
             {
+                //no song in the playlist anymore
                 txt_Presently_Playing.Text = null;
-            }
+            }  
         }
-       
-
         #endregion
 
         #region Menu
@@ -217,10 +231,10 @@ namespace Juke_Box
         /// <summary>
         /// 
         /// </summary>
-        private void setUpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void setUp_Menu_Click(object sender, EventArgs e)
         {
             Set_up set_Up = new Set_up();
-            // Send vaules to set_up       
+            //Send vaules to set_up       
             set_Up.load_media = load_media;
             set_Up.lst_media = lst_media; // 
             set_Up.genre_titles = genre_titles; // 
@@ -232,16 +246,11 @@ namespace Juke_Box
         /// <summary>
         /// 
         /// </summary>
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void about_Menu_Click(object sender, EventArgs e)
         {
 
         }
-
-
-        //
         #endregion
-
-        
     }
 
 }
