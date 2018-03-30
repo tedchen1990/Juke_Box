@@ -45,7 +45,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btn_Cancle = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -223,21 +222,11 @@
             this.btn_OK.UseVisualStyleBackColor = true;
             this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(413, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Set_up
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(928, 615);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.btn_Cancle);
             this.Controls.Add(this.button3);
@@ -279,6 +268,5 @@
         private System.Windows.Forms.Button btn_Previous_Title;
         private System.Windows.Forms.Button btn_Cancle;
         private System.Windows.Forms.Button btn_OK;
-        private System.Windows.Forms.Button button1;
     }
 }

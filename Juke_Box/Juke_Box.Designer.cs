@@ -48,10 +48,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(643, 29);
+            this.label1.BackColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(465, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 17);
+            this.label1.Size = new System.Drawing.Size(268, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Copyright © 2010. Dr. Peter O\'Neill.";
             // 
@@ -60,21 +62,21 @@
             this.lst_Playlist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.lst_Playlist.FormattingEnabled = true;
             this.lst_Playlist.ItemHeight = 16;
-            this.lst_Playlist.Location = new System.Drawing.Point(331, 452);
+            this.lst_Playlist.Location = new System.Drawing.Point(242, 414);
             this.lst_Playlist.Name = "lst_Playlist";
             this.lst_Playlist.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lst_Playlist.Size = new System.Drawing.Size(227, 180);
+            this.lst_Playlist.Size = new System.Drawing.Size(261, 180);
             this.lst_Playlist.TabIndex = 1;
             // 
             // txt_Title
             // 
             this.txt_Title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txt_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Title.Location = new System.Drawing.Point(296, 195);
+            this.txt_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Title.Location = new System.Drawing.Point(230, 199);
             this.txt_Title.Multiline = true;
             this.txt_Title.Name = "txt_Title";
             this.txt_Title.ReadOnly = true;
-            this.txt_Title.Size = new System.Drawing.Size(292, 35);
+            this.txt_Title.Size = new System.Drawing.Size(282, 27);
             this.txt_Title.TabIndex = 2;
             this.txt_Title.Text = "No contents !";
             // 
@@ -82,30 +84,30 @@
             // 
             this.lst_Blank_Templet.FormattingEnabled = true;
             this.lst_Blank_Templet.ItemHeight = 16;
-            this.lst_Blank_Templet.Location = new System.Drawing.Point(296, 229);
+            this.lst_Blank_Templet.Location = new System.Drawing.Point(230, 225);
             this.lst_Blank_Templet.Name = "lst_Blank_Templet";
-            this.lst_Blank_Templet.Size = new System.Drawing.Size(292, 116);
+            this.lst_Blank_Templet.Size = new System.Drawing.Size(282, 116);
             this.lst_Blank_Templet.TabIndex = 3;
             this.lst_Blank_Templet.DoubleClick += new System.EventHandler(this.lst_Blank_Templet_DoubleClick);
             // 
             // txt_Presently_Playing
             // 
             this.txt_Presently_Playing.BackColor = System.Drawing.Color.Lime;
-            this.txt_Presently_Playing.Location = new System.Drawing.Point(269, 396);
+            this.txt_Presently_Playing.Location = new System.Drawing.Point(207, 376);
             this.txt_Presently_Playing.Multiline = true;
             this.txt_Presently_Playing.Name = "txt_Presently_Playing";
             this.txt_Presently_Playing.ReadOnly = true;
-            this.txt_Presently_Playing.Size = new System.Drawing.Size(348, 29);
+            this.txt_Presently_Playing.Size = new System.Drawing.Size(334, 29);
             this.txt_Presently_Playing.TabIndex = 4;
             this.txt_Presently_Playing.Tag = "";
             // 
             // hsc_Select_Title
             // 
             this.hsc_Select_Title.LargeChange = 1;
-            this.hsc_Select_Title.Location = new System.Drawing.Point(296, 345);
+            this.hsc_Select_Title.Location = new System.Drawing.Point(230, 341);
             this.hsc_Select_Title.Maximum = 0;
             this.hsc_Select_Title.Name = "hsc_Select_Title";
-            this.hsc_Select_Title.Size = new System.Drawing.Size(292, 24);
+            this.hsc_Select_Title.Size = new System.Drawing.Size(282, 24);
             this.hsc_Select_Title.TabIndex = 5;
             this.hsc_Select_Title.ValueChanged += new System.EventHandler(this.hsc_Select_Title_ValueChanged);
             // 
@@ -117,9 +119,9 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setUp_Menu,
             this.about_Menu});
-            this.menuStrip.Location = new System.Drawing.Point(0, 796);
+            this.menuStrip.Location = new System.Drawing.Point(0, 733);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(904, 31);
+            this.menuStrip.Size = new System.Drawing.Size(745, 31);
             this.menuStrip.TabIndex = 6;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -147,10 +149,10 @@
             // 
             this.Juke_box_MediaPlayer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Juke_box_MediaPlayer.Enabled = true;
-            this.Juke_box_MediaPlayer.Location = new System.Drawing.Point(0, 750);
+            this.Juke_box_MediaPlayer.Location = new System.Drawing.Point(0, 687);
             this.Juke_box_MediaPlayer.Name = "Juke_box_MediaPlayer";
             this.Juke_box_MediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("Juke_box_MediaPlayer.OcxState")));
-            this.Juke_box_MediaPlayer.Size = new System.Drawing.Size(904, 46);
+            this.Juke_box_MediaPlayer.Size = new System.Drawing.Size(745, 46);
             this.Juke_box_MediaPlayer.TabIndex = 7;
             this.Juke_box_MediaPlayer.Visible = false;
             this.Juke_box_MediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.Juke_box_MediaPlayer_PlayStateChange);
@@ -161,7 +163,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(904, 827);
+            this.ClientSize = new System.Drawing.Size(745, 764);
             this.Controls.Add(this.Juke_box_MediaPlayer);
             this.Controls.Add(this.hsc_Select_Title);
             this.Controls.Add(this.txt_Presently_Playing);
@@ -170,6 +172,7 @@
             this.Controls.Add(this.lst_Playlist);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;

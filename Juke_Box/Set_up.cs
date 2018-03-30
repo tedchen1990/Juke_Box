@@ -23,7 +23,6 @@ namespace Juke_Box
         public string[] genre_titles;
         public int genre_max;
         public bool load_media;
-
         //for << Previous and Next >>
         public int Number_of_Genre;
         #endregion

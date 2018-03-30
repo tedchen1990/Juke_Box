@@ -36,17 +36,13 @@ namespace Juke_Box
         /// </summary>
         private void Juke_Box_Load(object sender, EventArgs e)
         {
-            load_display();
-        }
-
-        private void load_display()
-        {
+            // loading the contents
             if (Load_Media() == true) // If Load_Media() is sucessful 
             {
                 // hsc_Select_Title.value as Number_of_Genre
                 hscorllbar_display(hsc_Select_Title.Value);
             }
-            else{ MessageBox.Show("Unable to load the Content !");}
+            else { MessageBox.Show("Unable to load the Content !"); }
         }
 
         //method of storing infos from media
@@ -64,9 +60,11 @@ namespace Juke_Box
             {
                 load_media = true;
 
-                /* Set up the 20 left space for creating new genre when it is Loading Media for each time */
+                /* Set up the 20 left space for creating new genre 
+                   when it is Loading Media for each time */
                 lst_media = new ListBox[count_load_genre + 20];
                 genre_titles = new string[count_load_genre + 20];
+                // hscrollbar index is from 0
                 hsc_Select_Title.Maximum = count_load_genre - 1;
 
                 // Read second line of text
@@ -75,20 +73,32 @@ namespace Juke_Box
                 int genre_index = 0;
                 try
                 {
+                    // Run fixed times which can not over the number of genres
                     while (genre_index < count_load_genre)
                     {
+                        // Set up a real space of listbox for data
                         lst_media[genre_index] = new ListBox();
+                        // If is is num of the second line
                         if (lineOfText != null && int.TryParse(lineOfText, out judgement)==true)
                         {
+                            // Read the next line from text, which must be title
                             lineOfText = media.ReadLine();
+                            // Put the title into genre_titles
                             genre_titles[genre_index] = lineOfText;
+                            // Read the third line, which must be the track and follow the title
                             lineOfText = media.ReadLine();
                         }
+                        /* If the tracks is a num or is null, 
+                        then the loop will be end */
                         while (lineOfText != null && int.TryParse(lineOfText, out judgement) == false)
                         {
+                            // Give the data of the line to the listbox
                             lst_media[genre_index].Items.Add(lineOfText);
-                            lineOfText = media.ReadLine();
+                            // Read the next track
+                            lineOfText = media.ReadLine(); 
                         }
+                        /*Run the next title of listbox 
+                          after this data of the title has been done */
                         genre_index += 1;
                     }                   
                 }
@@ -105,7 +115,7 @@ namespace Juke_Box
 
         #endregion
 
-        #region Hscrollbar
+        #region Hscrollbar & Display
 
         /// <summary>
         /// Slither the hscrollbar
@@ -150,17 +160,17 @@ namespace Juke_Box
             int Track_index = lst_Blank_Templet.SelectedIndex;
             if (Track_index >= 0)
             {
-                // song is playing
+                // Song is playing
                 if (playing_song == true)
                 {
                     // add to playlist
                     lst_Playlist.Items.Add(lst_Blank_Templet.Items[Track_index]);
                 }
-                // no song in the playlist any more and song is not playing
+                // No song in the playlist any more and song is not playing
                 else if (lst_Playlist.Items.Count==0)
                 {
                     txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
-                    // start the first song if no music in the playlist
+                    // Start the first song if no music in the playlist
                     play_music();
                     playing_song = true;
                 }    
@@ -185,12 +195,12 @@ namespace Juke_Box
             // No sang playing then going to play next song 
             if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsStopped)
             {
-                // stop the timer with playing next song
+                // Stop the timer with playing next song
                 timer_player.Enabled = false;
-                // play the next song
+                // Play the next song
                 play_next();
             } 
-            // song is playing and mark it is playing
+            // Song is playing and mark it is playing
             if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsPlaying)
             {
                 playing_song = true;
@@ -206,12 +216,14 @@ namespace Juke_Box
             {
                 // No song playing
                 playing_song = false;
+                // Timer event will run
                 timer_player.Enabled = true;
             }
         }
 
         private void play_next()
         {  
+            //  If thera are songs into playlist 
             if (lst_Playlist.Items.Count > 0)
             {
                 txt_Presently_Playing.Text = lst_Playlist.Items[0].ToString();
@@ -234,10 +246,10 @@ namespace Juke_Box
         private void setUp_Menu_Click(object sender, EventArgs e)
         {
             Set_up set_Up = new Set_up();
-            //Send vaules to set_up       
+            //Send vaules to set_up for edit       
             set_Up.load_media = load_media;
-            set_Up.lst_media = lst_media; // 
-            set_Up.genre_titles = genre_titles; // 
+            set_Up.lst_media = lst_media;  
+            set_Up.genre_titles = genre_titles;  
             set_Up.genre_max = hsc_Select_Title.Maximum;
 
             set_Up.ShowDialog();
@@ -251,6 +263,7 @@ namespace Juke_Box
 
         }
         #endregion
+
     }
 
 }
