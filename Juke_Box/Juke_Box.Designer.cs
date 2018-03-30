@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Juke_Box));
             this.label1 = new System.Windows.Forms.Label();
             this.lst_Playlist = new System.Windows.Forms.ListBox();
@@ -38,7 +39,10 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.setUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer_player = new System.Windows.Forms.Timer(this.components);
+            this.Juke_box_MediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Juke_box_MediaPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -133,6 +137,24 @@
             this.aboutToolStripMenuItem.Text = "A&bout";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // timer_player
+            // 
+            this.timer_player.Enabled = true;
+            this.timer_player.Interval = 3000;
+            this.timer_player.Tick += new System.EventHandler(this.timer_player_Tick);
+            // 
+            // Juke_box_MediaPlayer
+            // 
+            this.Juke_box_MediaPlayer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Juke_box_MediaPlayer.Enabled = true;
+            this.Juke_box_MediaPlayer.Location = new System.Drawing.Point(0, 750);
+            this.Juke_box_MediaPlayer.Name = "Juke_box_MediaPlayer";
+            this.Juke_box_MediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("Juke_box_MediaPlayer.OcxState")));
+            this.Juke_box_MediaPlayer.Size = new System.Drawing.Size(904, 46);
+            this.Juke_box_MediaPlayer.TabIndex = 7;
+            this.Juke_box_MediaPlayer.Visible = false;
+            this.Juke_box_MediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.Juke_box_MediaPlayer_PlayStateChange);
+            // 
             // Juke_Box
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -140,6 +162,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(904, 827);
+            this.Controls.Add(this.Juke_box_MediaPlayer);
             this.Controls.Add(this.hsc_Select_Title);
             this.Controls.Add(this.txt_Presently_Playing);
             this.Controls.Add(this.lst_Blank_Templet);
@@ -157,6 +180,7 @@
             this.Load += new System.EventHandler(this.Juke_Box_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Juke_box_MediaPlayer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,5 +197,7 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem setUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Timer timer_player;
+        private AxWMPLib.AxWindowsMediaPlayer Juke_box_MediaPlayer;
     }
 }

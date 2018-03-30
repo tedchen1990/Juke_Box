@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Juke_Box;
 using System.IO;
+using WMPLib;
 
 namespace Juke_Box
 {
@@ -23,8 +24,8 @@ namespace Juke_Box
         // Global variable in Juke_Box
         public ListBox[] lst_media;
         public string[] genre_titles;
+        public string Files_Path;
         public bool load_media = false;
-        public bool isplaying = false;
         #endregion
 
         #region Initial stage
@@ -51,8 +52,8 @@ namespace Juke_Box
         private bool Load_Media()
         {
             // The media floder of information is already made in this path
-            string InfoPath = Directory.GetCurrentDirectory() + "\\Media\\";
-            StreamReader media = File.OpenText(InfoPath + "Media.txt");
+            Files_Path = Directory.GetCurrentDirectory();
+            StreamReader media = File.OpenText(Files_Path + "\\Media\\Media.txt");
 
             // Read first line from file
             string lineOfText = media.ReadLine();
@@ -146,19 +147,68 @@ namespace Juke_Box
         private void Coyp_track()
         {
             int Track_index = lst_Blank_Templet.SelectedIndex;
-
             if (Track_index >= 0)
             {
                 if (txt_Presently_Playing.Text.Length == 0)
                 {
                     txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
+                    play_music();
                 }
                 else
                 {
                     lst_Playlist.Items.Add(lst_Blank_Templet.Items[Track_index]);
-                }
+                }    
             }
         }
+
+        //
+        private void play_music()
+        {
+            timer_player.Enabled = false;
+            Juke_box_MediaPlayer.URL = Files_Path + "\\Tracks\\" + txt_Presently_Playing.Text;
+            Juke_box_MediaPlayer.Ctlcontrols.play();  
+        }
+
+        #endregion
+
+        #region Playing music
+        /// <summary>
+        /// 
+        /// </summary>
+        private void timer_player_Tick(object sender, EventArgs e)
+        {
+            // No sang playing
+            if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsStopped)
+            {
+                play_next();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Juke_box_MediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsStopped)
+            {
+                timer_player.Enabled = true;
+            }
+        }
+
+        private void play_next()
+        {
+            if (lst_Playlist.Items.Count > 0)
+            {
+                txt_Presently_Playing.Text = lst_Playlist.Items[0].ToString();
+                lst_Playlist.Items.RemoveAt(0);
+                play_music();
+            }
+            else
+            {
+                txt_Presently_Playing.Text = null;
+            }
+        }
+       
 
         #endregion
 
@@ -175,6 +225,7 @@ namespace Juke_Box
             set_Up.lst_media = lst_media; // 
             set_Up.genre_titles = genre_titles; // 
             set_Up.genre_max = hsc_Select_Title.Maximum;
+
             set_Up.ShowDialog();
         }
 
@@ -186,9 +237,11 @@ namespace Juke_Box
 
         }
 
+
         //
         #endregion
 
+        
     }
 
 }
