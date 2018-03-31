@@ -45,7 +45,7 @@ namespace Juke_Box
 
         #endregion
 
-        #region Import track from directory 
+        #region Import & Clear track 
 
         /// <summary>
         /// Click the button to get list track from 
@@ -61,21 +61,34 @@ namespace Juke_Box
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                string flie_path = folderBrowserDialog.SelectedPath;
-                string[] song_path = Directory.GetFiles(flie_path);
-                if (song_path.Length > 0)
+                foreach (string file in Directory.EnumerateFiles(folderBrowserDialog.SelectedPath, "*.*", SearchOption.AllDirectories).Where
+                        (a => a.EndsWith(".mp3") || a.EndsWith(".wma") || a.EndsWith(".wav") || a.EndsWith(".MP3") || a.EndsWith(".WMA") || a.EndsWith(".WAV")))
                 {
-                    int index = 0;
-                    while (index < song_path.Length)
-                    {
-                        lst_Read_File.Items.Add(song_path[index]);
-                        index += 1;
-                    }
+                    lst_Read_File.Items.Add(file);
+                }
+                if (lst_Read_File.Items.Count > 0)
+                {
                     btn_Import_Tracks.Enabled = false;
                 }
-                else { MessageBox.Show("Nothing in the floder"); }
+                else
+                {
+                    MessageBox.Show("No songs in the folder !");
+                }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void btn_Clear_Tracks_Click(object sender, EventArgs e)
+        {
+            lst_Read_File.Items.Clear();
+            btn_Import_Tracks.Enabled = true;
+        }
+
+        #endregion
+
+        #region MyRegion
 
         #endregion
 
@@ -148,5 +161,6 @@ namespace Juke_Box
 
         #endregion
 
+       
     }
 }
