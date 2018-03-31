@@ -22,9 +22,9 @@ namespace Juke_Box
 
         #region Global variable
         // Global variable in Juke_Box
+        public string media_Path = Directory.GetCurrentDirectory();
         public ListBox[] lst_media;
         public string[] genre_titles;
-        public string Files_Path;
         public bool load_media = false;
         public bool playing_song = false;
         #endregion
@@ -49,8 +49,7 @@ namespace Juke_Box
         private bool Load_Media()
         {
             // The media floder of information is already made in this path
-            Files_Path = Directory.GetCurrentDirectory();
-            StreamReader media = File.OpenText(Files_Path + "\\Media\\Media.txt");
+            StreamReader media = File.OpenText(media_Path + "\\Media\\Media.txt");
 
             // Read first line from file
             string lineOfText = media.ReadLine();
@@ -172,15 +171,17 @@ namespace Juke_Box
                     txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
                     // Start the first song if no music in the playlist
                     play_music();
+                    /* set up playing_song is true that run faster than using timer
+                       in this case */
                     playing_song = true;
-                }    
+                }
             }
         }
 
         //
         private void play_music()
         {
-            Juke_box_MediaPlayer.URL = Files_Path + "\\Tracks\\" + txt_Presently_Playing.Text;
+            Juke_box_MediaPlayer.URL = media_Path + "\\Tracks\\" + txt_Presently_Playing.Text;
             Juke_box_MediaPlayer.Ctlcontrols.play();  
         }
 
@@ -200,10 +201,10 @@ namespace Juke_Box
                 // Play the next song
                 play_next();
             } 
-            // Song is playing and mark it is playing
-            if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsPlaying)
+            //If the Song is playing and make sure mark it is playing
+            else if (Juke_box_MediaPlayer.playState == WMPPlayState.wmppsPlaying)
             {
-                playing_song = true;
+               playing_song = true;
             }
         }
 
@@ -223,7 +224,7 @@ namespace Juke_Box
 
         private void play_next()
         {  
-            //  If thera are songs into playlist 
+            //  If thera are songs into playlist then move next song to play
             if (lst_Playlist.Items.Count > 0)
             {
                 txt_Presently_Playing.Text = lst_Playlist.Items[0].ToString();
@@ -246,7 +247,8 @@ namespace Juke_Box
         private void setUp_Menu_Click(object sender, EventArgs e)
         {
             Set_up set_Up = new Set_up();
-            //Send vaules to set_up for edit       
+            //Send vaules to set_up for edit
+            set_Up.media_Path = media_Path;
             set_Up.load_media = load_media;
             set_Up.lst_media = lst_media;  
             set_Up.genre_titles = genre_titles;  

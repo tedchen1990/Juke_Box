@@ -45,6 +45,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btn_Cancle = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -222,6 +223,10 @@
             this.btn_OK.UseVisualStyleBackColor = true;
             this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
+            // folderBrowserDialog
+            // 
+            this.folderBrowserDialog.Description = "Browser For  Folder";
+            // 
             // Set_up
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -268,5 +273,6 @@
         private System.Windows.Forms.Button btn_Previous_Title;
         private System.Windows.Forms.Button btn_Cancle;
         private System.Windows.Forms.Button btn_OK;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }

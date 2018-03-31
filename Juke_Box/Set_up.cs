@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Juke_Box
 {
@@ -19,6 +20,7 @@ namespace Juke_Box
 
         #region Global variable
         // Get this vaule from Juke_Box
+        public string media_Path;
         public ListBox[] lst_media; 
         public string[] genre_titles;
         public int genre_max;
@@ -33,12 +35,6 @@ namespace Juke_Box
         /// 
         /// </summary>
         private void Set_up_Load(object sender, EventArgs e)
-        {
-            load_display();
-        }
-
-        //
-        private void load_display()
         {
             Number_of_Genre = 0;
             if (load_media == true)
@@ -57,7 +53,28 @@ namespace Juke_Box
         /// </summary>
         private void btn_Import_Tracks_Click(object sender, EventArgs e)
         {
+            Open_tracks();
+        }
 
+        // Open a folder and put data to the listbox
+        private void Open_tracks()
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                string flie_path = folderBrowserDialog.SelectedPath;
+                string[] song_path = Directory.GetFiles(flie_path);
+                if (song_path.Length > 0)
+                {
+                    int index = 0;
+                    while (index < song_path.Length)
+                    {
+                        lst_Read_File.Items.Add(song_path[index]);
+                        index += 1;
+                    }
+                    btn_Import_Tracks.Enabled = false;
+                }
+                else { MessageBox.Show("Nothing in the floder"); }
+            }
         }
 
         #endregion
