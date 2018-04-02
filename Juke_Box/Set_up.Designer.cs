@@ -42,7 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Coyp_Track = new System.Windows.Forms.Button();
             this.btn_Move_Track = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_Delete_Track = new System.Windows.Forms.Button();
             this.btn_Cancle = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -185,6 +185,7 @@
             this.btn_Coyp_Track.TabIndex = 7;
             this.btn_Coyp_Track.Text = "Coyp Track >>";
             this.btn_Coyp_Track.UseVisualStyleBackColor = true;
+            this.btn_Coyp_Track.Click += new System.EventHandler(this.btn_Coyp_Track_Click);
             // 
             // btn_Move_Track
             // 
@@ -194,15 +195,17 @@
             this.btn_Move_Track.TabIndex = 8;
             this.btn_Move_Track.Text = "Move Track >>";
             this.btn_Move_Track.UseVisualStyleBackColor = true;
+            this.btn_Move_Track.Click += new System.EventHandler(this.btn_Move_Track_Click);
             // 
-            // button3
+            // btn_Delete_Track
             // 
-            this.button3.Location = new System.Drawing.Point(382, 359);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(210, 60);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Delete Track From Genre";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_Delete_Track.Location = new System.Drawing.Point(382, 359);
+            this.btn_Delete_Track.Name = "btn_Delete_Track";
+            this.btn_Delete_Track.Size = new System.Drawing.Size(210, 60);
+            this.btn_Delete_Track.TabIndex = 9;
+            this.btn_Delete_Track.Text = "Delete Track From Genre";
+            this.btn_Delete_Track.UseVisualStyleBackColor = true;
+            this.btn_Delete_Track.Click += new System.EventHandler(this.btn_Delete_Track_Click);
             // 
             // btn_Cancle
             // 
@@ -235,7 +238,7 @@
             this.ClientSize = new System.Drawing.Size(928, 615);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.btn_Cancle);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btn_Delete_Track);
             this.Controls.Add(this.btn_Move_Track);
             this.Controls.Add(this.btn_Coyp_Track);
             this.Controls.Add(this.groupBox2);
@@ -264,7 +267,7 @@
         private System.Windows.Forms.Button btn_Import_Tracks;
         private System.Windows.Forms.Button btn_Coyp_Track;
         private System.Windows.Forms.Button btn_Move_Track;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_Delete_Track;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_Title;
         private System.Windows.Forms.ListBox lst_Blank_Templet;

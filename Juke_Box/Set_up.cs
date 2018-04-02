@@ -25,8 +25,16 @@ namespace Juke_Box
         public string[] genre_titles;
         public int genre_max;
         public bool load_media;
+
         //for << Previous and Next >>
         public int Number_of_Genre;
+
+        // edit the track in temporary
+        public ListBox edit_paths;
+        // C is copy, D is move
+        public ListBox paths_mark;
+        // can know edit is true or not
+        public bool edit = false;
         #endregion
 
         #region Initial stage
@@ -40,12 +48,15 @@ namespace Juke_Box
             if (load_media == true)
             {
                 Select_Num_display(Number_of_Genre);
+                // can't set into the track file over 100 songs at once time 
+                edit_paths = new ListBox();
+                paths_mark = new ListBox();
             }
         }
 
         #endregion
 
-        #region Import & Clear track 
+        #region Import & Clear track - Buttons
 
         /// <summary>
         /// Click the button to get list track from 
@@ -66,6 +77,7 @@ namespace Juke_Box
                 {
                     lst_Read_File.Items.Add(file);
                 }
+
                 if (lst_Read_File.Items.Count > 0)
                 {
                     btn_Import_Tracks.Enabled = false;
@@ -88,7 +100,73 @@ namespace Juke_Box
 
         #endregion
 
-        #region MyRegion
+        #region Coyp & Move & Detele Track  
+        private void btn_Coyp_Track_Click(object sender, EventArgs e)
+        {
+            // C is coyp path
+            add_track("C");
+        }
+
+        private void btn_Move_Track_Click(object sender, EventArgs e)
+        {
+            // M is move path
+            add_track("M");
+        }
+
+        private void btn_Delete_Track_Click(object sender, EventArgs e)
+        {
+            // delete songs
+            delete_track();
+        }
+
+        private void add_track(string mark)
+        {
+            int Track_index = lst_Read_File.SelectedIndex;
+            if (Track_index > -1)
+            {
+                string song_path = lst_Read_File.Items[Track_index].ToString();
+                string song_name = song_path.Substring(song_path.LastIndexOf("\\") + 1);
+
+                lst_media[Number_of_Genre].Items.Add(song_name);
+                edit = true;
+                Select_Num_display(Number_of_Genre);
+                // copy or move
+                bool exist = false;
+                int max_index = edit_paths.Items.Count;
+                int index = 0;
+                while (index < max_index)
+                {
+                    if (song_path == edit_paths.Items[index].ToString())
+                    {
+                        paths_mark.Items[index] = mark;
+                        exist = true;
+                        break;
+                    }
+                    index += 1;
+                }
+                if (exist == false)
+                {
+                    edit_paths.Items.Add(song_path);
+                    paths_mark.Items.Add(mark);
+                }
+            }
+            else { MessageBox.Show("You must to select !"); }
+           
+        }
+
+        private void delete_track()
+        {
+            int Track_index = lst_Blank_Templet.SelectedIndex;
+            if (Track_index > -1)
+            {
+                string song_name = lst_Blank_Templet.Items[Track_index].ToString();
+                lst_media[Number_of_Genre].Items.RemoveAt(Track_index);
+
+                edit = true;
+                Select_Num_display(Number_of_Genre);
+            }
+            else { MessageBox.Show("You must to select !"); }
+        }
 
         #endregion
 
@@ -101,12 +179,11 @@ namespace Juke_Box
         {
             Number_of_Genre -= 1;
             Select_Num_display(Number_of_Genre);
-
+            btn_Next_Title.Enabled = true;
             if (Number_of_Genre == 0)
             {
                 btn_Previous_Title.Enabled = false;
-            }
-            btn_Next_Title.Enabled = true;
+            }  
         }
 
         /// <summary>
@@ -114,14 +191,16 @@ namespace Juke_Box
         /// </summary>
         private void btn_Next_Title_Click(object sender, EventArgs e)
         {
-            if (genre_max > 0){ Number_of_Genre += 1;} 
-            Select_Num_display(Number_of_Genre);
-
-            if (Number_of_Genre == (genre_max))
+            if (genre_max > 0)
             {
-                btn_Next_Title.Enabled = false;
-            }
-            btn_Previous_Title.Enabled = true;
+                Number_of_Genre += 1;
+                Select_Num_display(Number_of_Genre);
+                btn_Previous_Title.Enabled = true;
+                if (Number_of_Genre == (genre_max))
+                {
+                    btn_Next_Title.Enabled = false;
+                }    
+            }   
         }
 
         //
@@ -132,22 +211,32 @@ namespace Juke_Box
             txt_Title.Text = genre_titles[Number_of_Genre];
 
             int max_index = lst_media[Number_of_Genre].Items.Count;
-            int items_index = 0;
-            while (items_index < max_index)
+            int index = 0;
+            while (index < max_index)
             {
-                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[items_index]);
-                items_index += 1;
+                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[index]);
+                index += 1;
             }
         }
+
         #endregion
 
-        #region OK & Cancle - Button
+        #region OK & Cancle - Buttons
 
         /// <summary>
         /// 
         /// </summary>
         private void btn_OK_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
+            if (edit == true)
+            {
+                DialogResult comfrim = MessageBox.Show("You have edited songs. Are you sure?", "Prompt", MessageBoxButtons.OKCancel);
+                if (comfrim == DialogResult.OK)
+                {
+                    // real_input();
+                }
+            }
             this.Close();
         }
 
@@ -156,7 +245,21 @@ namespace Juke_Box
         /// </summary>
         private void btn_Cancle_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
+            if (edit == true)
+            {
+                DialogResult comfrim = MessageBox.Show("You have edited songs. Do you want to save your change?", "Prompt", MessageBoxButtons.OKCancel);
+                if (comfrim == DialogResult.OK)
+                {
+                    // real_input();
+                }
+            }
             this.Close();
+        }
+
+        private void real_input()
+        {
+            
         }
 
         #endregion

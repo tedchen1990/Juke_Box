@@ -36,13 +36,21 @@ namespace Juke_Box
         /// </summary>
         private void Juke_Box_Load(object sender, EventArgs e)
         {
+            load_and_display();
+        }
+
+        private void load_and_display()
+        {
             // loading the contents
             if (Load_Media() == true) // If Load_Media() is sucessful 
             {
                 // hsc_Select_Title.value as Number_of_Genre
                 hscorllbar_display(hsc_Select_Title.Value);
             }
-            else { MessageBox.Show("Unable to load the Content !"); }
+            else
+            {
+                MessageBox.Show("Unable to load the Content !");
+            }
         }
 
         //method of storing infos from media
@@ -59,7 +67,7 @@ namespace Juke_Box
             {
                 load_media = true;
 
-                /* Set up the 20 left space for creating new genre 
+                /* Set up the 20 left space for creating new genres 
                    when it is Loading Media for each time */
                 lst_media = new ListBox[count_load_genre + 20];
                 genre_titles = new string[count_load_genre + 20];
@@ -133,11 +141,11 @@ namespace Juke_Box
             txt_Title.Text = genre_titles[Number_of_Genre];
 
             int max_index = lst_media[Number_of_Genre].Items.Count;
-            int items_index = 0;
-            while (items_index < max_index)
+            int index = 0;
+            while (index < max_index)
             {
-                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[items_index]);
-                items_index += 1;
+                lst_Blank_Templet.Items.Add(lst_media[Number_of_Genre].Items[index]);
+                index += 1;
             }
         }
 
@@ -157,7 +165,7 @@ namespace Juke_Box
         private void Coyp_track()
         {
             int Track_index = lst_Blank_Templet.SelectedIndex;
-            if (Track_index >= 0)
+            if (Track_index > -1 )
             {
                 // Song is playing
                 if (playing_song == true)
@@ -170,7 +178,7 @@ namespace Juke_Box
                 {
                     txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
                     // Start the first song if no music in the playlist
-                    play_music();
+                    play_music(txt_Presently_Playing.Text);
                     /* set up playing_song is true that run faster than using timer
                        in this case */
                     playing_song = true;
@@ -179,9 +187,9 @@ namespace Juke_Box
         }
 
         //
-        private void play_music()
+        private void play_music(string track)
         {
-            Juke_box_MediaPlayer.URL = media_Path + "\\Tracks\\" + txt_Presently_Playing.Text;
+            Juke_box_MediaPlayer.URL = media_Path + "\\Tracks\\" + track;
             Juke_box_MediaPlayer.Ctlcontrols.play();  
         }
 
@@ -229,7 +237,7 @@ namespace Juke_Box
             {
                 txt_Presently_Playing.Text = lst_Playlist.Items[0].ToString();
                 lst_Playlist.Items.RemoveAt(0);
-                play_music();
+                play_music(txt_Presently_Playing.Text);
             }
             else
             {
@@ -255,6 +263,12 @@ namespace Juke_Box
             set_Up.genre_max = hsc_Select_Title.Maximum;
 
             set_Up.ShowDialog();
+
+            if (set_Up.DialogResult == DialogResult.OK)
+            {
+                // refresh
+                load_and_display();
+            }
         }
 
         /// <summary>
