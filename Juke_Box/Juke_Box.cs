@@ -80,7 +80,7 @@ namespace Juke_Box
                 int genre_index = 0;
                 try
                 {
-                    // Run fixed times which can not over the number of genres
+                    // Run in fixed times which can not over the number of genres
                     while (genre_index < count_load_genre)
                     {
                         // Set up a real space of listbox for data

@@ -125,6 +125,7 @@
             this.btn_Delete_Title.TabIndex = 13;
             this.btn_Delete_Title.Text = "Delete";
             this.btn_Delete_Title.UseVisualStyleBackColor = true;
+            this.btn_Delete_Title.Click += new System.EventHandler(this.btn_Delete_Title_Click);
             // 
             // btn_Add_Title
             // 
@@ -134,6 +135,7 @@
             this.btn_Add_Title.TabIndex = 12;
             this.btn_Add_Title.Text = "Add";
             this.btn_Add_Title.UseVisualStyleBackColor = true;
+            this.btn_Add_Title.Click += new System.EventHandler(this.btn_Add_Title_Click);
             // 
             // btn_Previous_Title
             // 

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Input_box.cs" />
     <Compile Include="Juke_Box.cs">
       <SubType>Form</SubType>
     </Compile>
