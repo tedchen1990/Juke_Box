@@ -29,22 +29,18 @@ namespace Juke_Box
         public bool playing_song = false;
         #endregion
 
-        #region Initial stage
+        #region Initial Loading
 
         /// <summary>
         /// Running the event first when the program starts
         /// </summary>
         private void Juke_Box_Load(object sender, EventArgs e)
         {
-            load_and_display();
-        }
-
-        private void load_and_display()
-        {
             // loading the contents
             if (Load_Media() == true) // If Load_Media() is sucessful 
             {
-                // hsc_Select_Title.value as Number_of_Genre
+                // hsc_Select_Title.value as Number_of_Genre from 0, when the program start
+                hsc_Select_Title.Value = 0;
                 hscorllbar_display(hsc_Select_Title.Value);
             }
             else
@@ -267,7 +263,12 @@ namespace Juke_Box
             if (set_Up.DialogResult == DialogResult.OK)
             {
                 // refresh
-                load_and_display();
+                if (Load_Media() == true) // If Load_Media() is sucessful 
+                {
+                    // hsc_Select_Title.value as Number_of_Genre
+                    hsc_Select_Title.Value = 0;
+                    hscorllbar_display(hsc_Select_Title.Value);
+                }
             }
         }
 
@@ -276,7 +277,8 @@ namespace Juke_Box
         /// </summary>
         private void about_Menu_Click(object sender, EventArgs e)
         {
-
+            About about = new About();
+            about.ShowDialog();
         }
         #endregion
 

@@ -174,12 +174,11 @@
             this.Controls.Add(this.menuStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "Juke_Box";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "My_Juke_Box";
+            this.Text = "My Juke Box v2.0";
             this.Load += new System.EventHandler(this.Juke_Box_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

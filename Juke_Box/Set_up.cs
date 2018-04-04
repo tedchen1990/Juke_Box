@@ -220,6 +220,7 @@ namespace Juke_Box
             genre_titles[Number_of_Genre] = title;
             lst_media[Number_of_Genre] = new ListBox();
             Select_Num_display(Number_of_Genre);
+            edit = true;
         }
 
         private void delete_genre()
@@ -246,6 +247,7 @@ namespace Juke_Box
                 genre_max -= 1;
                 Number_of_Genre = genre_max;
                 Select_Num_display(Number_of_Genre);
+                edit = true;
             }
                          
         }
@@ -320,8 +322,12 @@ namespace Juke_Box
             this.DialogResult = DialogResult.OK;
             if (edit == true)
             {
-                // do something
-                input_media();
+                DialogResult comfrim = MessageBox.Show("Do you want to save your change ?", "Warning", MessageBoxButtons.YesNo);
+                if (comfrim == DialogResult.Yes)
+                {
+                    // input contents of songs to media.txt 
+                    input_media();
+                }
             }
             this.Close();
         }
@@ -337,29 +343,46 @@ namespace Juke_Box
                 DialogResult comfrim = MessageBox.Show("You have made somthing change.Do you want to save your change ?", "Warning", MessageBoxButtons.YesNo);
                 if (comfrim == DialogResult.Yes)
                 {
-                    // do something
+                    // input contents of songs to media.txt 
                     input_media();
                 }
             }
             this.Close();
         }
        
-        //
+        // 
         private void input_media()
         {
-            try
+            if (genre_max > -1)
             {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
+                string media_path = media_Path + "\\Media\\Media.txt";
+                File.Delete(media_path);
+                if (File.Exists(media_path) == false)
+                {
+                    StreamWriter media = File.CreateText(media_Path + "\\Media\\Media.txt");
+                    int title_count = genre_max + 1;
+                    int tilte_index = 0;
+                    // first line is counting how many genre is
+                    media.WriteLine(title_count);
+                    while (tilte_index < title_count)
+                    {
+                        media.WriteLine(tilte_index);
+                        media.WriteLine(genre_titles[tilte_index]);
+                        int song_count = lst_media[tilte_index].Items.Count;
+                        int song_index = 0;
+                        while (song_index < song_count)
+                        {
+                            media.WriteLine(lst_media[tilte_index].Items[song_index]);
+                            song_index += 1;
+                        }
+                        tilte_index += 1;
+                    }
+                    media.Close();
+                }
             }
         }
 
         #endregion
-
-      
+ 
     }
 }
