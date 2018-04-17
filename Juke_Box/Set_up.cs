@@ -35,7 +35,7 @@ namespace Juke_Box
         #region Initial stage
 
         /// <summary>
-        /// 
+        /// Loading when the form open
         /// </summary>
         private void Set_up_Load(object sender, EventArgs e)
         {
@@ -96,7 +96,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Clear the import track listbox (the left listbox)
         /// </summary>
         private void btn_Clear_Tracks_Click(object sender, EventArgs e)
         {
@@ -107,9 +107,9 @@ namespace Juke_Box
         #endregion
 
         #region Coyp & Move & Detele Tracks
-        
+
         /// <summary>
-        /// 
+        /// Coyp the song to the media and track file
         /// </summary>
         private void btn_Coyp_Track_Click(object sender, EventArgs e)
         {
@@ -118,7 +118,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Move the song to the media and track file
         /// </summary>
         private void btn_Move_Track_Click(object sender, EventArgs e)
         {
@@ -127,7 +127,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Delete the song to the media file
         /// </summary>
         private void btn_Delete_Track_Click(object sender, EventArgs e)
         {
@@ -135,6 +135,7 @@ namespace Juke_Box
             delete_track();
         }
 
+        // Add the infromation of song to media, add song path to track file
         private void add_track(int put_way)
         {
             int Track_index = lst_Read_File.SelectedIndex;
@@ -166,6 +167,7 @@ namespace Juke_Box
             }
         }
 
+        // Delete the information of song to media
         private void delete_track()
         {
             int Track_index = lst_Blank_Templet.SelectedIndex;
@@ -188,7 +190,7 @@ namespace Juke_Box
         #region Add & Delete - Genre Titles
 
         /// <summary>
-        /// 
+        /// Create a new genre
         /// </summary>
         private void btn_Add_Title_Click(object sender, EventArgs e)
         {
@@ -196,7 +198,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Delete a genre and delete all imformation of songs of the genre
         /// </summary>
         private void btn_Delete_Title_Click(object sender, EventArgs e)
         {
@@ -207,6 +209,7 @@ namespace Juke_Box
             }
         }
 
+        // Create a new genre
         private void add_genre()
         {
             string title = Input_box.InputBox("Please enter a title :");
@@ -223,6 +226,7 @@ namespace Juke_Box
             edit = true;
         }
 
+        // Delete genres
         private void delete_genre()
         {
             if (genre_max >= 0)
@@ -257,7 +261,7 @@ namespace Juke_Box
         #region << Previous - Next title >>
 
         /// <summary>
-        /// 
+        /// Previous display
         /// </summary>
         private void btn_Previous_Title_Click(object sender, EventArgs e)
         {
@@ -266,7 +270,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Next dispaly
         /// </summary>
         private void btn_Next_Title_Click(object sender, EventArgs e)
         {
@@ -277,7 +281,7 @@ namespace Juke_Box
             }
         }
 
-        //
+        // show the information of the right listbox
         private void Select_Num_display(int Number_of_Genre)
         {
             lst_Blank_Templet.Items.Clear();
@@ -315,11 +319,12 @@ namespace Juke_Box
         #region OK & Cancle - Buttons
 
         /// <summary>
-        /// 
+        /// OK event
         /// </summary>
         private void btn_OK_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            // if something has been change show the message
             if (edit == true)
             {
                 DialogResult comfrim = MessageBox.Show("Do you want to save your change ?", "Warning", MessageBoxButtons.YesNo);
@@ -333,7 +338,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Cancle event
         /// </summary>
         private void btn_Cancle_Click(object sender, EventArgs e)
         {
@@ -350,7 +355,7 @@ namespace Juke_Box
             this.Close();
         }
        
-        // 
+        // when the form close, refresh the information of the media file
         private void input_media()
         {
             if (genre_max > -1)

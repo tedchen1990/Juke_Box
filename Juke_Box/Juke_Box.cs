@@ -22,8 +22,8 @@ namespace Juke_Box
 
         #region Global variable
         // Global variable in Juke_Box
-        public string media_Path = Directory.GetCurrentDirectory();
-        public ListBox[] lst_media;
+        public string media_Path = Directory.GetCurrentDirectory(); // the path of files
+        public ListBox[] lst_media; 
         public string[] genre_titles;
         public bool load_media = false;
         public bool playing_song = false;
@@ -37,7 +37,8 @@ namespace Juke_Box
         private void Juke_Box_Load(object sender, EventArgs e)
         {
             // loading the contents
-            if (Load_Media() == true) // If Load_Media() is sucessful 
+            // If Load_Media() is sucessful
+            if (Load_Media() == true)  
             {
                 // hsc_Select_Title.value as Number_of_Genre from 0, when the program start
                 hsc_Select_Title.Value = 0;
@@ -57,13 +58,14 @@ namespace Juke_Box
 
             // Read first line from file
             string lineOfText = media.ReadLine();
+            // Get the genre quantity 
             int count_load_genre;
             //Make sure the fisrt line is not null and is number which means how mang genre
             if (lineOfText != null && int.TryParse(lineOfText, out count_load_genre))
             {
                 load_media = true;
 
-                /* Set up the 20 left space for creating new genres 
+                /* Set up more than 20 left space for creating new genres 
                    when it is Loading Media for each time */
                 lst_media = new ListBox[count_load_genre + 20];
                 genre_titles = new string[count_load_genre + 20];
@@ -107,9 +109,8 @@ namespace Juke_Box
                 }
                 catch (Exception)
                 {
-                    //
+                    // if it doesn't work,throw that load_media is false
                     load_media = false;
-                    //throw;
                 }
             }
             media.Close();
@@ -129,7 +130,7 @@ namespace Juke_Box
             hscorllbar_display(hsc_Select_Title.Value);
         }
 
-        //
+        // When change drag the hscorllbar it will show up different playlist
         private void hscorllbar_display(int Number_of_Genre)
         {
             lst_Blank_Templet.Items.Clear();
@@ -150,14 +151,14 @@ namespace Juke_Box
         #region Double-clicking a track
 
         /// <summary>
-        /// 
+        /// Playing songs when double click a track
         /// </summary>
         private void lst_Blank_Templet_DoubleClick(object sender, EventArgs e)
         {
             Coyp_track();
         }
 
-        //
+        // copy the song to the playlist
         private void Coyp_track()
         {
             int Track_index = lst_Blank_Templet.SelectedIndex;
@@ -175,14 +176,13 @@ namespace Juke_Box
                     txt_Presently_Playing.Text = lst_Blank_Templet.Items[Track_index].ToString();
                     // Start the first song if no music in the playlist
                     play_music(txt_Presently_Playing.Text);
-                    /* set up playing_song is true that run faster than using timer
-                       in this case */
+                    /* set up playing_song is true  */
                     playing_song = true;
                 }
             }
         }
 
-        //
+        // Find the path of the song and play it
         private void play_music(string track)
         {
             Juke_box_MediaPlayer.URL = media_Path + "\\Tracks\\" + track;
@@ -193,7 +193,7 @@ namespace Juke_Box
 
         #region Playing music
         /// <summary>
-        /// 
+        /// Automatically play song one by one
         /// </summary>
         private void timer_player_Tick(object sender, EventArgs e)
         {
@@ -213,7 +213,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// get the state of the song 
         /// </summary>
         private void Juke_box_MediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
@@ -246,7 +246,7 @@ namespace Juke_Box
         #region Menu
 
         /// <summary>
-        /// 
+        /// Open to setup form
         /// </summary>
         private void setUp_Menu_Click(object sender, EventArgs e)
         {
@@ -273,7 +273,7 @@ namespace Juke_Box
         }
 
         /// <summary>
-        /// 
+        /// Open to about form
         /// </summary>
         private void about_Menu_Click(object sender, EventArgs e)
         {

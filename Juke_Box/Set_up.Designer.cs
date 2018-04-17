@@ -85,6 +85,7 @@
             // lst_Read_File
             // 
             this.lst_Read_File.FormattingEnabled = true;
+            this.lst_Read_File.HorizontalScrollbar = true;
             this.lst_Read_File.ItemHeight = 16;
             this.lst_Read_File.Location = new System.Drawing.Point(6, 21);
             this.lst_Read_File.Name = "lst_Read_File";

@@ -51,11 +51,11 @@
             this.label1.BackColor = System.Drawing.SystemColors.ControlText;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(465, 9);
+            this.label1.Location = new System.Drawing.Point(514, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(268, 17);
+            this.label1.Size = new System.Drawing.Size(219, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Copyright © 2010. Dr. Peter O\'Neill.";
+            this.label1.Text = "Copyright © 2018. Ted Chen.";
             // 
             // lst_Playlist
             // 

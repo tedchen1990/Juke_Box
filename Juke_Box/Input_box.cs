@@ -58,10 +58,7 @@ namespace Juke_Box
             form.AcceptButton = buttonOk;
             form.CancelButton = buttonCancel;
 
-            if (form.ShowDialog() == DialogResult.Cancel)
-            {
-                textBox.Text = "";
-            }
+            form.ShowDialog();
             return textBox.Text;
         }
     }

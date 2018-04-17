@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Description :
+
+The "My Juke Box v2.0", application was developed as an example to first year Under Graduates on the module “Programming for Computing” at Sheffield Hallam University.
+ 
+The application shows the use of the following components, ListBoxes, TextBox and Timer. In addition, it introduces secondary Windows and covers Scope e.g., Local and Global variables.
+ 
+The application was created by Dr Peter O’Neill, the Module Leader.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1844,16 +1853,6 @@
         BAAgAQAIAEACABAAgAQAIAEACABAAgAQAIAEACABAAgAQAIAEACABAAgAQAIAEACABAAgAQAIAEACABA
         AgAQAIAEACABAAgAQAIAyFKIZlAAgAQAIAEAAQBlAAgAQBhAAgAQAIAEACAEqCQQAIAEACABAAgAQAIA
         EACABAAgAQAIAEACABAAgAQAIAEACABAAgAQAIAEACABAAgAQAIA/9k=
-</value>
-  </data>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>Description :
-
-The "My Juke Box v2.0", application was developed as an example to first year Under Graduates on the module “Programming for Computing” at Sheffield Hallam University.
- 
-The application shows the use of the following components, ListBoxes, TextBox and Timer. In addition, it introduces secondary Windows and covers Scope e.g., Local and Global variables. 
-
-The application was created by Dr Peter O’Neill, the Module Leader.
 </value>
   </data>
 </root>
